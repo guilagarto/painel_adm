@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($title ?? '80u80 | Soluções Digitais'); ?></title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225154349342173"
+     crossorigin="anonymous"></script>
     <style>
         :root {
             --azul-metalico: #1e3a8a;
@@ -63,9 +65,21 @@
         <?php require_once $viewFile; ?>
     </main>
 
-    <footer>
-        &copy; <?php echo date('Y'); ?> 80u80 Soluções Digitais. Design Minimalista Premium.
+        <footer style="background: var(--preto); color: #718096; text-align: center; padding: 40px 20px; font-size: 14px; border-top: 1px solid #222;">
+        
+        <!-- Links de Políticas Exigidos pelo Google AdSense -->
+        <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+            <a href="/solucaodigital/public/politica-de-privacidade" style="color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--dourado)';" onmouseout="this.style.color='#a0aec0';">Política de Privacidade</a>
+            <span style="color: #4a5568;">|</span>
+            <a href="/solucaodigital/public/termos-de-uso" style="color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--dourado)';" onmouseout="this.style.color='#a0aec0';">Termos de Uso</a>
+        </div>
+
+        <!-- Copyright -->
+        <div style="color: #4a5568; font-size: 12px; letter-spacing: 0.5px;">
+            &copy; <?php echo date('Y'); ?> <strong style="color: #fff;">80u80 Soluções Digitais</strong>. Todos os direitos reservados.
+        </div>
     </footer>
+
 
 </body>
 </html>

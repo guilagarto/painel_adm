@@ -39,6 +39,7 @@ class MarketingController extends Controller
         $todosPosts = $this->siteService->obterPostsRecentes(50);
         $this->view('Public/blog', ['artigos' => $todosPosts, 'title' => 'Blog | 80u80'], 'main');
     }
+
     public function artigo(): void
     {
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -61,4 +62,28 @@ class MarketingController extends Controller
     {
         $this->view('Public/contato', ['title' => 'Fale Conosco | 80u80'], 'main');
     }
+
+    /**
+     * Processa a submissão do formulário de contato do site público.
+     */
+    public function enviarContato(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->siteService->registrarLead($_POST);
+            
+            // Redireciona de volta para a página de contato exibindo o banner de sucesso
+            header('Location: /solucaodigital/public/contato?sucesso=1');
+            exit;
+        }
+    }
+        public function politicaPrivacidade(): void
+    {
+        $this->view('Public/politica', ['title' => 'Política de Privacidade | 80u80'], 'main');
+    }
+
+    public function termosUso(): void
+    {
+        $this->view('Public/termos', ['title' => 'Termos de Uso | 80u80'], 'main');
+    }
+
 }

@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redireciona de forma invisível todo o tráfego para a pasta pública
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Bloqueia a listagem de pastas por segurança
+Options -Indexes

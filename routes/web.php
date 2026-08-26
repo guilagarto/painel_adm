@@ -73,4 +73,18 @@ $router->get('/admin/blog/excluir', [\App\SolucoesDigitais\Controllers\AdminBlog
 $router->get('/blog', [MarketingController::class, 'blog']);
 $router->get('/blog/artigo', [MarketingController::class, 'artigo']); // Nova rota interna registrada!
 
+// Procure o bloco da Área Pública no seu routes/web.php e insira a rota do POST:
+$router->get('/contato', [MarketingController::class, 'contato']);
+$router->post('/contato/enviar', [MarketingController::class, 'enviarContato']); // Nova linha adicionada!
+
+
+// --- PAINEL DE GESTÃO DE LEADS COMERCIAIS ---
+$router->get('/admin/leads', [\App\SolucoesDigitais\Controllers\LeadController::class, 'index']);
+$router->get('/admin/leads/status', [\App\SolucoesDigitais\Controllers\LeadController::class, 'atualizarStatus']);
+
+// --- DOCUMENTOS LEGAIS OBRIGATÓRIOS (GOOGLE ADSENSE) ---
+$router->get('/politica-de-privacidade', [MarketingController::class, 'politicaPrivacidade']);
+$router->get('/termos-de-uso', [MarketingController::class, 'termosUso']);
+
+
 return $router;

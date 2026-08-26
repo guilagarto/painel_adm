@@ -1,2 +1,12 @@
-.env
+# Desconsiderar dependências do Composer (instaladas via terminal no servidor)
 /vendor/
+
+# Desconsiderar uploads de arquivos locais/testes
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# Arquivos de configuração do VS Code ou do sistema operacional
+.keys/
+.vscode/
+.DS_Store
+Thumbs.db

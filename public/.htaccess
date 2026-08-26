@@ -1,13 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Se o projeto rodar em subpasta, aponta para a pasta pública
-    RewriteBase /solucaodigital/public/
+    # Define a base como a raiz (essencial para servidores online)
+    RewriteBase /
 
-    # Se a requisição for para um arquivo ou pasta real, acessa direto
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Se o arquivo ou pasta requisitada fisicamente não existir, joga pro index.php (Roteador)
     RewriteCond %{REQUEST_FILENAME} !-f
-    
-    # Envia tudo para o index.php
-    RewriteRule ^(.*)$ index.php [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>

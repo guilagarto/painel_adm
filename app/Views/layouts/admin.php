@@ -19,18 +19,19 @@
     <!-- Barra Lateral do Painel Admin -->
     <aside class="sidebar">
         <h2>Painel 80u80</h2>
-        <nav style="display: flex; flex-direction: column; gap: 5px;">
+     <nav style="display: flex; flex-direction: column; gap: 5px;">
     <a href="/solucaodigital/public/admin">Dashboard</a>
     <a href="/solucaodigital/public/admin/projetos">Projetos</a>
     <a href="/solucaodigital/public/admin/metricas">Métricas</a>
     <a href="/solucaodigital/public/admin/relatorios">Relatórios</a>
-    <a href="/solucaodigital/public/admin/blog">Blog (Painel)</a> <!-- Nova aba adicionada -->
-    <a href="/solucaodigital/public/admin/usuarios">Usuários</a>
+    <a href="/solucaodigital/public/admin/blog">Blog (Painel)</a>
+    <a href="/solucaodigital/public/admin/leads">Leads (Novos)</a> <!-- Nova aba adicionada -->
+    <a href="/solucaodigital/public/admin/usuarios">Usuarios</a>
     
     <hr style="border: 0; border-top: 1px solid #2d3748; margin: 15px 0;">
-    
     <a href="/solucaodigital/public/logout" style="color: #e53e3e; font-weight: bold;">Sair do Sistema</a>
-</nav>
+    </nav>
+
     </aside>
 
     <!-- Área de Conteúdo do Painel -->
