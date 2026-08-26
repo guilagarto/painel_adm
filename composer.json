@@ -1,0 +1,21 @@
+{
+    "name": "8ou80/solucoes-digitais",
+    "description": "Plataforma web de soluções DIgitais, gestão de projetos e metricas",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+    "psr-4": {
+        "App\\SolucoesDigitais\\": "app/"
+    }
+},
+    "authors": [
+        {
+            "name": "GuilhermeLima"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.7",
+        "dompdf/dompdf": "^3.1"
+    }
+}
