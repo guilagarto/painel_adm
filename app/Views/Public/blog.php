@@ -16,10 +16,8 @@
                 <p style="color: #4a5568; font-size: 15px; margin-bottom: 20px; line-height: 1.6;">
                     <?php echo htmlspecialchars($artigo['resumo']); ?>
                 </p>
-                
-                <!-- Botão de Acesso ao Artigo Completo passando o ID via GET -->
-                <a href="/solucaodigital/public/blog/artigo?id=<?php echo $artigo['id']; ?>" 
-                   style="display: inline-block; background: #1e3a8a; color: white; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 14px; border-bottom: 2px solid #d4af37; transition: background 0.2s;">
+                <a href="/blog/artigo?id=<?php echo $artigo['id']; ?>" 
+                   style="display: inline-block; background: #1e3a8a; color: white; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 14px; border-bottom: 2px solid #d4af37;">
                     Ler Artigo Completo &rarr;
                 </a>
             </article>

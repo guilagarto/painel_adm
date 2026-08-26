@@ -50,14 +50,16 @@
         <div class="nav-container">
             <a href="/solucaodigital/public/" class="logo">80u80<span>.</span></a>
             <nav>
-                <a href="/solucaodigital/public/">Home</a>
-                <a href="/solucaodigital/public/solucoes">Soluções</a>
-                <a href="/solucaodigital/public/cases">Cases</a>
-                <a href="/solucaodigital/public/blog">Blog</a>
-                <a href="/solucaodigital/public/sobre">Sobre</a>
-                <a href="/solucaodigital/public/contato">Contato</a>
-                <a href="/solucaodigital/public/admin" style="border: 1px solid var(--dourado); padding: 2px 10px; border-radius: 4px; color: var(--dourado); font-weight: bold;">Painel &rarr;</a>
-            </nav>
+    <a href="/">Home</a>
+    <a href="/solucoes">Soluções</a>
+    <a href="/cases">Cases</a>
+    <a href="/blog">Blog</a>
+    <a href="/sobre">Sobre</a>
+    <a href="/contato">Contato</a>
+    
+    <a href="/admin" style="border: 1px solid var(--dourado); padding: 2px 10px; border-radius: 4px; color: var(--dourado); font-weight: bold;">Painel &rarr;</a>
+</nav>
+
         </div>
     </header>
 

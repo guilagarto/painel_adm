@@ -1,6 +1,6 @@
 <div style="max-width: 800px; margin: 0 auto; background: white; padding: 40px 30px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
     
-    <a href="/solucaodigital/public/blog" style="color: #1e3a8a; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; margin-bottom: 20px;">
+    <a href="/blog" style="color: #1e3a8a; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; margin-bottom: 20px;">
         &larr; Voltar para a listagem
     </a>
 
