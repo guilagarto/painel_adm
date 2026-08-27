@@ -16,16 +16,16 @@ class Router
         $this->routes['POST'][$path] = $handler;
     }
 
-        public function run(): void
+    public function run(): void
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        // Limpeza padrão do diretório para o XAMPP
+        // Limpeza inteligente: Só limpa subpastas se NÃO estiver na raiz da Hostinger
         $scriptName = $_SERVER['SCRIPT_NAME']; 
         $baseDir = dirname($scriptName);       
 
-        if (strpos($uri, $baseDir) === 0) {
+        if ($baseDir !== '/' && $baseDir !== '\\' && strpos($uri, $baseDir) === 0) {
             $uri = substr($uri, strlen($baseDir));
         }
 
@@ -66,5 +66,4 @@ class Router
         echo "<p>Rota requisitada: <strong>" . htmlspecialchars($uri) . "</strong></p>";
         echo "<p>Método: <strong>" . $method . "</strong></p>";
     }
-
 }
