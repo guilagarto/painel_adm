@@ -9,7 +9,8 @@
         </div>
     <?php endif; ?>
 
-    <form action="/solucaodigital/public/login" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+    <!-- CORRIGIDO: Modificado o action para 'login' relativo, sem prefixos locais -->
+    <form action="login" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
         <div>
             <label style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px;">E-mail</label>
             <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 4px; box-sizing: border-box;">
@@ -20,7 +21,7 @@
             <input type="password" name="senha" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 4px; box-sizing: border-box;">
         </div>
 
-        <button type="submit" style="background: #2196f3; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px;">
+        <button type="submit" style="background: #1e3a8a; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; border-bottom: 3px solid #d4af37;">
             Entrar no Sistema
         </button>
     </form>
