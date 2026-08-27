@@ -1,11 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
-
-    # Se a requisição for para um arquivo ou pasta real que exista (como os assets), abre direto
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-
-    # Caso contrário, direciona silenciosamente para o index.php da raiz processar no MVC
-    RewriteRule ^(.*)$ index.php [L,QSA]
+    
+    # Redireciona invisivelmente todo o tráfego da raiz para a pasta public
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
