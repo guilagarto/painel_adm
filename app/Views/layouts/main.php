@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title><?php echo htmlspecialchars($title ?? '80u80 | Soluções Digitais'); ?></title>
+    <link rel="stylesheet" href="/public/assets/css/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225154349342173"
      crossorigin="anonymous"></script>
     <style>
