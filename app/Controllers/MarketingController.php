@@ -66,16 +66,20 @@ class MarketingController extends Controller
     /**
      * Processa a submissão do formulário de contato do site público.
      */
+        /**
+     * Processa a submissão do formulário de contato do site público.
+     */
     public function enviarContato(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->siteService->registrarLead($_POST);
             
-            // Redireciona de volta para a página de contato exibindo o banner de sucesso
-            header('Location: /solucaodigital/public/contato?sucesso=1');
+            // CORRIGIDO: Redireciona de forma limpa usando a rota de produção da Hostinger
+            header('Location: /contato?sucesso=1');
             exit;
         }
     }
+
         public function politicaPrivacidade(): void
     {
         $this->view('Public/politica', ['title' => 'Política de Privacidade | 80u80'], 'main');
