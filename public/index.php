@@ -1,14 +1,17 @@
 <?php
-// Garanta que esta seja a PRIMEIRA linha absoluta do arquivo, colada no topo!
+// 🚨 FORÇA A EXIBIÇÃO DE ERROS OCULTOS NA TELA BRANCA DA HOSTINGER
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start([
         'cookie_lifetime' => 86400,
-        'cookie_secure' => isset($_SERVER['HTTPS']), // Ativa segurança se rodar em HTTPS
+        'cookie_secure' => isset($_SERVER['HTTPS']),
         'cookie_httponly' => true,
         'cookie_samesite' => 'Lax'
     ]);
 }
 
-// Seu código original de require e rotas continua abaixo...
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../routes/web.php';
