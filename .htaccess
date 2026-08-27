@@ -1,10 +1,13 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Redireciona para a pasta public mantendo a URL limpa
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
-</IfModule>
+<?php
+// Ativa exibição máxima de erros para produção e desenvolvimento
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-# Bloqueia listagem de pastas por segurança
-Options -Indexes
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Como este arquivo está na raiz, removemos o prefixo anterior "/../" dos caminhos
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/routes/web.php';

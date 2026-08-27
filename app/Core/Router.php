@@ -21,49 +21,38 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        // Limpeza inteligente: Só limpa subpastas se NÃO estiver na raiz da Hostinger
-        $scriptName = $_SERVER['SCRIPT_NAME']; 
-        $baseDir = dirname($scriptName);       
-
-        if ($baseDir !== '/' && $baseDir !== '\\' && strpos($uri, $baseDir) === 0) {
+        // Limpeza inteligente: Se rodar no XAMPP local, limpa a pasta. Na Hostinger lê direto da raiz.
+        $baseDir = '/solucaodigital/public';
+        if (strpos($uri, $baseDir) === 0) {
             $uri = substr($uri, strlen($baseDir));
         }
 
         $uri = '/' . trim($uri, '/');
 
-        // 1. Verifica se o caminho físico da rota está registrado no array
+        // 1. Verifica se a rota existe no array
         if (isset($this->routes[$method][$uri])) {
             [$controllerClass, $action] = $this->routes[$method][$uri];
 
-            // 2. Se a classe não for localizada pelo Composer, exibe o diagnóstico real
             if (!class_exists($controllerClass)) {
                 http_response_code(500);
-                echo "<h3>Erro de Carregamento de Classe</h3>";
-                echo "<p>O Roteador encontrou a rota <strong>{$uri}</strong>, mas o Composer não conseguiu localizar o arquivo físico da classe:</p>";
-                echo "<code style='background:#eee;padding:5px;display:block;'>{$controllerClass}</code>";
-                echo "<p><strong>O que verificar:</strong> Certifique-se de que o <i>namespace</i> no topo do arquivo do Controller corresponde exatamente a este caminho.</p>";
+                echo "<h3>Erro: Classe não encontrada</h3><p>{$controllerClass}</p>";
                 die();
             }
 
-            // 3. Se a classe existe, mas o método não foi encontrado
             $controller = new $controllerClass();
             if (!method_exists($controller, $action)) {
                 http_response_code(500);
-                echo "<h3>Erro de Método Não Encontrado</h3>";
-                echo "<p>A classe <code style='background:#eee;padding:3px;'>{$controllerClass}</code> foi carregada com sucesso, mas o método abaixo não existe dentro dela:</p>";
-                echo "<code style='background:#eee;padding:5px;display:block;'>public function {$action}()</code>";
+                echo "<h3>Erro: Método não encontrado</h3><p>{$action}</p>";
                 die();
             }
 
-            // Se tudo estiver correto, executa a ação normalmente
             $controller->$action();
             return;
         }
 
-        // Se a rota realmente não existir no array, exibe o 404 tradicional
+        // Se a rota não existir, exibe o 404 limpo
         http_response_code(404);
         echo "<h3>Página não encontrada (404)</h3>";
         echo "<p>Rota requisitada: <strong>" . htmlspecialchars($uri) . "</strong></p>";
-        echo "<p>Método: <strong>" . $method . "</strong></p>";
     }
 }
