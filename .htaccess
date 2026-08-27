@@ -1,13 +1,11 @@
-<?php
-// Ativa exibição máxima de erros para produção e desenvolvimento
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+    # Se a requisição for para um arquivo ou pasta real que exista (como os assets), abre direto
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
 
-// Como este arquivo está na raiz, removemos o prefixo anterior "/../" dos caminhos
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/routes/web.php';
+    # Caso contrário, direciona silenciosamente para o index.php da raiz processar no MVC
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
