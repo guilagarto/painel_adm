@@ -8,7 +8,9 @@
 <?php endif; ?>
 
 <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 35px; max-width: 600px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); margin-bottom: 50px;">
-    <form action="/contato/enviar" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+    <!-- Mude de "/contato/enviar" para "contato/enviar" sem a barra no início -->
+<form action="contato/enviar" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+
         
         <div>
             <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #2d3748;">Seu Nome Completo</label>

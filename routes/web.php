@@ -20,7 +20,13 @@ $router->get('/blog/artigo', [MarketingController::class, 'artigo']);
 $router->get('/blog/artigo/', [MarketingController::class, 'artigo']);
 
 $router->get('/sobre', [MarketingController::class, 'sobre']);
+// Procure a rota de envio de contato e certifique-se de que está assim:
 $router->get('/contato', [MarketingController::class, 'contato']);
+
+// Registra as duas variações para blindar o mecanismo de envio contra 404 online
+$router->post('/contato/enviar', [MarketingController::class, 'enviarContato']);
+$router->post('/contato/enviar/', [MarketingController::class, 'enviarContato']);
+
 
 
 // --- ÁREA PÚBLICA ---
