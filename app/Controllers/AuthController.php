@@ -23,15 +23,42 @@ class AuthController extends Controller
     // Processa o envio do formulário de login
      public function logar(): void
     {
-        // ... (sua lógica padrão de validação de e-mail e password_verify continua igual em cima)
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = trim($_POST['email']);
+            $senha = $_POST['senha'];
 
-        // Se a senha bater com o banco, loga o usuário:
-        $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nome'] = $usuario['nome'];
+            $db = \App\SolucoesDigitais\Core\Database::getConnection();
+            $stmt = $db->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
+            $stmt->execute(['email' => $email]);
+            $usuario = $stmt->fetch();
 
-        // CORRIGIDO: Redireciona de forma limpa para o dashboard online
-        header('Location: /admin');
-        exit;
+            if (!$usuario) {
+                // Mensagem direta se o e-mail não bater com o phpMyAdmin
+                die("<h3>❌ Diagnóstico de Entrada:</h3><p>O e-mail <strong>{$email}</strong> não foi encontrado na tabela 'usuarios' da Hostinger. Verifique letras maiúsculas ou espaços.</p>");
+            }
+
+            // Teste de validação do Hash seguro que injetamos
+            if (password_verify($senha, $usuario['senha'])) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_nome'] = $usuario['nome'];
+
+                // Se a sessão funcionar, o código vai parar aqui e confirmar o sucesso antes de redirecionar
+                echo "<h3>✅ Senha Validada com Sucesso!</h3>";
+                echo "<p>Tentando gravar sessão para o usuário ID: " . $_SESSION['usuario_id'] . "</p>";
+                echo "<p>Se a página travar aqui, clique no link para forçar a entrada: <a href='/admin'>Acessar Painel Admin</a></p>";
+                
+                // Redirecionamento padrão
+                header('Location: /admin');
+                exit;
+            } else {
+                // Mensagem direta se a senha digitada não bater com a criptografia
+                die("<h3>❌ Erro de Criptografia:</h3><p>A senha digitada não corresponde ao código hash salvo no banco de dados da Hostinger.</p>");
+            }
+        }
     }
 
     public function logout(): void
