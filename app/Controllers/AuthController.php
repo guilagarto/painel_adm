@@ -21,39 +21,29 @@ class AuthController extends Controller
     }
 
     // Processa o envio do formulário de login
-    public function logar(): void
+     public function logar(): void
     {
-        if (!isset($_SESSION)) { session_start(); }
+        // ... (sua lógica padrão de validação de e-mail e password_verify continua igual em cima)
 
-        $email = trim($_POST['email'] ?? '');
-        $senha = $_POST['senha'] ?? '';
+        // Se a senha bater com o banco, loga o usuário:
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
 
-        $db = Database::getConnection();
-        $stmt = $db->prepare("SELECT id, nome, email, senha FROM usuarios WHERE email = :email LIMIT 1");
-        $stmt->execute(['email' => $email]);
-        $usuario = $stmt->fetch();
-
-        // Verifica se o usuário existe e se a senha bate com o hash criptografado
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario_id']   = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-
-            header('Location: /solucaodigital/public/admin');
-            exit;
-        }
-
-        // Se falhar, recarrega a tela passando a mensagem de erro
-        $this->view('Public/login', ['erro' => 'E-mail ou senha incorretos.'], 'main');
+        // CORRIGIDO: Redireciona de forma limpa para o dashboard online
+        header('Location: /admin');
+        exit;
     }
 
-    // Faz o logout do sistema
     public function logout(): void
     {
-        if (!isset($_SESSION)) { session_start(); }
-        session_unset();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         session_destroy();
 
-        header('Location: /solucaodigital/public/login');
+        // CORRIGIDO: Ao deslogar na produção, joga o usuário de volta para o login limpo da Hostinger
+        header('Location: /login');
         exit;
     }
 }

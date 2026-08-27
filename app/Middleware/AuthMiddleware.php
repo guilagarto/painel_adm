@@ -4,19 +4,16 @@ namespace App\SolucoesDigitais\Middleware;
 
 class AuthMiddleware
 {
-    /**
-     * Verifica se o usuário está autenticado na sessão.
-     * Caso não esteja, barra o acesso imediatamente.
-     */
     public static function handle(): void
     {
-        if (!isset($_SESSION)) {
+        // Se a sessão não estiver ativa ou o ID do usuário não existir, bloqueia
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Se a chave não existir na sessão, joga o invasor para a tela de login
         if (!isset($_SESSION['usuario_id'])) {
-            header('Location: /solucaodigital/public/login');
+            // CORRIGIDO: Removido o prefixo local. Agora redireciona direto para a raiz da Hostinger
+            header('Location: /login');
             exit;
         }
     }
